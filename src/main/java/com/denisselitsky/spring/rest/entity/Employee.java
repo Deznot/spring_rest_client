@@ -18,6 +18,13 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Employee(String name, String surname, String department, int salary) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+    }
+
     public int getId() {
         return id;
     }

@@ -27,15 +27,25 @@ public class Communication {
     }
 
     public Employee getEmployee(int id) {
-        return null;
+        Employee employee = restTemplate.getForObject(URL + "/" + id, Employee.class);
+        return employee;
     }
 
     public void saveEmployee(Employee employee) {
-
+        int id = employee.getId();
+        if (id == 0) {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(URL, employee, String.class);
+            System.out.println("New employee was added to database");
+            System.out.println(responseEntity.getBody());
+        } else {
+            restTemplate.put(URL, employee);
+            System.out.println("Employee with id " + id + " was updated");
+        }
     }
 
-    public void deleteEmployee(int id ) {
-
+    public void deleteEmployee(int id) {
+        restTemplate.delete(URL + "/" + id);
+        System.out.println("Employee with id " + id + " was deleted from Database");
     }
 
 }
